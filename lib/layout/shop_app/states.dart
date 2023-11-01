@@ -26,3 +26,9 @@ class ShopCategoriesSuccessState extends ShopStates{}
 
 class ShopCategoriesErrorState extends ShopStates{}
 
+class ShopFavoritesSuccessState extends ShopStates{}
+
+class ShopChangeFavoritesSuccessState extends ShopStates{}
+
+class ShopFavoritesErrorState extends ShopStates{}
+

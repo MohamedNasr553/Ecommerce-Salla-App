@@ -18,14 +18,14 @@ class ShopProductScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: ShopCubit.get(context).shopLayoutModel != null &&
               ShopCubit.get(context).categoriesModel != null,
-          builder: (context) => productsBuilder(ShopCubit.get(context).shopLayoutModel, ShopCubit.get(context).categoriesModel),
+          builder: (context) => productsBuilder(ShopCubit.get(context).shopLayoutModel, ShopCubit.get(context).categoriesModel, context),
           fallback: (context) => const Center(child: CircularProgressIndicator()),
         );
       },
     );
   }
 
-  Widget productsBuilder(ShopLayoutModel? model, CategoriesModel? categoriesModel) => SingleChildScrollView(
+  Widget productsBuilder(ShopLayoutModel? model, CategoriesModel? categoriesModel, context) => SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,10 +105,10 @@ class ShopProductScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
-                childAspectRatio: 1 / 1.8,
+                childAspectRatio: 1 / 1.6,
                 children: List.generate(
                   model!.data!.products.length,
-                  (index) => buildGridProduct(model.data!.products[index]),
+                  (index) => buildGridProduct(model.data!.products[index], context),
                 ),
               ),
             ),
@@ -144,7 +144,7 @@ class ShopProductScreen extends StatelessWidget {
         ],
       );
 
-  Widget buildGridProduct(ProductModel model) => Container(
+  Widget buildGridProduct(ProductModel? model, context) => Container(
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -154,7 +154,7 @@ class ShopProductScreen extends StatelessWidget {
               alignment: AlignmentDirectional.bottomStart,
               children: [
                 Image(
-                  image: NetworkImage(model.image),
+                  image: NetworkImage(model!.image),
                   width: double.infinity,
                   height: 200.0,
                 ),
@@ -183,6 +183,7 @@ class ShopProductScreen extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
                       height: 1.3,
                     ),
                   ),
@@ -214,11 +215,17 @@ class ShopProductScreen extends StatelessWidget {
                         ),
                       const Spacer(),
                       IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.favorite_border,
-                          size: 14.0,
+                        onPressed: () {
+                          ShopCubit.get(context).changeFavorites(model.id);
+                        },
+                        icon: CircleAvatar(
+                          radius: 15.0,
+                          backgroundColor: ShopCubit.get(context).favorites[model.id] ?? false ? Colors.deepOrange : Colors.grey,
+                          child: const Icon(
+                            Icons.favorite_border,
+                            size: 15.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
