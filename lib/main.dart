@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/ShopLayout.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
+import 'package:shop_app/modules/shop_app/login/LoginScreen.dart';
+import 'package:shop_app/modules/shop_app/on_boarding/onboarding_screen.dart';
 import 'package:shop_app/shared/bloc_observer.dart';
 import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/cubit/cubit.dart';
@@ -10,48 +12,46 @@ import 'package:shop_app/shared/network/local/CacheHelper.dart';
 import 'package:shop_app/shared/network/remote/dio_helper.dart';
 import 'package:shop_app/shared/styles/themes.dart';
 
-void main() {
-  // ensure that everything in main method has finished then run MyApp.
+void main() async {
+  // ensure that everything in the main method has finished then run MyApp.
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  // await CacheHelper.init();
+  await CacheHelper.init();
 
-  // Widget widget;
+  Widget widget;
 
-  // bool isDark = CacheHelper.get(key: 'isDark');
+  bool isDark = CacheHelper.get(key: 'isDark') ?? false;
 
-  // bool onBoarding = CacheHelper.get(key: 'onBoarding');
+  bool onBoarding = CacheHelper.get(key: 'onBoarding') ?? false;
 
-  // token = CacheHelper.get(key: 'token')?? "OUivTRhAD27e7V4ulp3L8M6BimJo2UjUJ5MSVWYU450VMgVchMnKpdjl0yuIWai0j8Ix8z";
+  userToken = await getUserToken();
+  print(userToken);
 
-  // if(onBoarding != null)
-  // {
-  //   if(token != null) {
-  //     widget = const ShopLayout();
-  //   }
-  //   else{
-  //     widget = ShopLoginScreen();
-  //   }
-  // }
-  // else {
-  //   widget = const OnBoardingScreen();
-  // }
+  if (onBoarding != null) {
+    if (userToken != null) {
+      widget = const ShopLayout();
+    } else {
+      widget = ShopLoginScreen();
+    }
+  } else {
+    widget = const OnBoardingScreen();
+  }
 
-  return runApp(const MyApp(
-    // isDark: isDark,
-    // startWidget: widget,
+  return runApp(MyApp(
+    isDark: isDark,
+    startWidget: widget,
   ));
 }
 
 class MyApp extends StatelessWidget {
-  // final bool isDark;
-  // final Widget startWidget;
+  final bool isDark;
+  final Widget startWidget;
 
   const MyApp({
     super.key,
-    // required this.isDark,
-    // required this.startWidget,
+    required this.isDark,
+    required this.startWidget,
   });
 
   @override
@@ -59,10 +59,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit()..changeTheme(),
+          create: (BuildContext context) => AppCubit()..changeTheme(fromShared: isDark,),
         ),
         BlocProvider(
-          create: (BuildContext context) => ShopCubit()..shopHomeData()..getCategories()..getUserProfile(),
+          create: (BuildContext context) => ShopCubit()
+            ..shopHomeData()
+            ..getCategories()
+            ..getUserProfile(),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
@@ -72,9 +75,9 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
-            // themeMode: AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            themeMode: ThemeMode.light,
-            home: const ShopLayout(),
+            themeMode:
+                AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            home: startWidget,
           );
         },
       ),

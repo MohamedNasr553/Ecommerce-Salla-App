@@ -11,13 +11,13 @@ class ShopLoginModel {
 }
 
 class UserData {
-  String? id;
+  int? id;
   String? name;
   String? email;
   String? phone;
   String? image;
-  String? points;
-  String? credit;
+  int? points;
+  int? credit;
   String? token;
 
   UserData({

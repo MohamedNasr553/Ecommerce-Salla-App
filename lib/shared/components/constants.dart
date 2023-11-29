@@ -10,9 +10,12 @@ void signOut(context){
   });
 }
 
+String? userToken = '';
+Future<String> getUserToken() async{
+  return CacheHelper.get(key: 'token')?? "OUivTRhAD27e7V4ulp3L8M6BimJo2UjUJ5MSVWYU450VMgVchMnKpdjl0yuIWai0j8Ix8z";
+}
+
 void printFullText(String text) {
   final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
-
-String? token = '';

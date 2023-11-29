@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
 import 'package:shop_app/layout/shop_app/states.dart';
 import 'package:shop_app/shared/components/components.dart';
+import 'package:shop_app/shared/components/constants.dart';
 
 class ShopSettingScreen extends StatelessWidget {
   ShopSettingScreen({super.key});
@@ -60,8 +61,19 @@ class ShopSettingScreen extends StatelessWidget {
                   height: 20.0,
                 ),
                 defaultButton(
-                  function: (){},
+                  function: (){
+                    // ShopCubit.get(context).updateUserData();
+                  },
                   text: 'Update',
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                defaultButton(
+                  function: (){
+                    signOut(context);
+                  },
+                  text: 'Logout',
                 ),
               ],
             ),
