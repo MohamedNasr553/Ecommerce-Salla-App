@@ -9,13 +9,7 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   bool isDark = false;
-
-  // void changeTheme(){
-  //   isDark = !isDark;
-  //
-  //   emit(ChangeThemeState());
-  // }
-
+  
   void changeTheme({
     bool? fromShared
   }){
