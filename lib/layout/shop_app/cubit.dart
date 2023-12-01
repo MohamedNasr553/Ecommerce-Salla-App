@@ -35,7 +35,7 @@ class ShopCubit extends Cubit<ShopStates>{
   ShopLayoutModel? shopLayoutModel;
   
   Map<int, bool> favorites = {};
-  
+
   void shopHomeData(){
    emit(ShopHomeLoadingState());
 
@@ -49,7 +49,7 @@ class ShopCubit extends Cubit<ShopStates>{
          element.id: element.inFavorites,
        });
      });
-     
+
      emit(ShopHomeSuccessState());
    }).catchError((error){
       emit(ShopHomeErrorState());
