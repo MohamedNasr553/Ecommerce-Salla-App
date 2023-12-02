@@ -44,11 +44,11 @@ class ShopCubit extends Cubit<ShopStates>{
    ).then((value){
      shopLayoutModel = ShopLayoutModel.fromJson(value.data);
 
-     shopLayoutModel!.data!.products.forEach((element) {
+     for (var element in shopLayoutModel!.data!.products) {
        favorites.addAll({
          element.id: element.inFavorites,
        });
-     });
+     }
 
      emit(ShopHomeSuccessState());
    }).catchError((error){

@@ -11,3 +11,5 @@ const CATEGORIES = 'categories';
 const SEARCH = 'products/search';
 
 const FAVORITES = 'favorites';
+
+const COMPLAINTS = 'complaints';

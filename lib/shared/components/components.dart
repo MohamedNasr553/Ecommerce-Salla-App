@@ -1,4 +1,3 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -46,6 +45,9 @@ Widget defaultTextFormField({
   required IconData prefix,
   IconData? suffix,
   VoidCallback? suffixPressed,
+  double radius = 0.0,
+  int? maxLines = 2,
+  int? minLines = 1,
 }) =>
     TextFormField(
       controller: controller,
@@ -54,6 +56,8 @@ Widget defaultTextFormField({
       onFieldSubmitted: onFieldSubmitted,
       onTap: onTap,
       validator: validate,
+      maxLines: maxLines,
+      minLines: minLines,
       onChanged: onChange,
       decoration: InputDecoration(
         labelText: labelText,

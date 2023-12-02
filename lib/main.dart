@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/ShopLayout.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
+import 'package:shop_app/modules/shop_app/complaints/complaint.dart';
+import 'package:shop_app/modules/shop_app/complaints/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/login/LoginScreen.dart';
 import 'package:shop_app/modules/shop_app/on_boarding/onboarding_screen.dart';
+import 'package:shop_app/modules/shop_app/settings/cubit/cubit.dart';
 import 'package:shop_app/shared/bloc_observer.dart';
 import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/cubit/cubit.dart';
@@ -28,7 +31,7 @@ void main() async {
   userToken = await getUserToken();
   print(userToken);
 
-  if (onBoarding != null) {
+  if (onBoarding !=  null) {
     if (userToken != null) {
       widget = const ShopLayout();
     } else {
@@ -62,6 +65,12 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => AppCubit()..changeTheme(fromShared: isDark,),
         ),
         BlocProvider(
+          create: (BuildContext context) => SettingsCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => ComplaintsCubit(),
+        ),
+        BlocProvider(
           create: (BuildContext context) => ShopCubit()
             ..shopHomeData()
             ..getCategories()
@@ -78,6 +87,7 @@ class MyApp extends StatelessWidget {
             themeMode:
                 AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             home: startWidget,
+            // home: ComplaintsScreen(),
           );
         },
       ),

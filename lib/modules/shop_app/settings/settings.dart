@@ -1,84 +1,212 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/layout/shop_app/cubit.dart';
-import 'package:shop_app/layout/shop_app/states.dart';
+import 'package:shop_app/modules/shop_app/FAQs/FAQs.dart';
+import 'package:shop_app/modules/shop_app/complaints/complaint.dart';
+import 'package:shop_app/modules/shop_app/contacts/contacts.dart';
+import 'package:shop_app/modules/shop_app/notifications/notifications.dart';
+import 'package:shop_app/modules/shop_app/settings/cubit/cubit.dart';
+import 'package:shop_app/modules/shop_app/settings/cubit/states.dart';
+import 'package:shop_app/modules/shop_app/update_profile/update_profile_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
-import 'package:shop_app/shared/components/constants.dart';
 
 class ShopSettingScreen extends StatelessWidget {
-  ShopSettingScreen({super.key});
-
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
+  const ShopSettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopCubit, ShopStates>(
+    return BlocConsumer<SettingsCubit, SettingsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var model = ShopCubit.get(context).shopProfileModel;
-
-        // nameController.text = model!.data!.name! ;
-        // emailController.text = model.data!.email!;
-        // emailController.text = model.data!.phone!;
-
-        return ConditionalBuilder(
-          condition: ShopCubit.get(context).shopProfileModel != null,
-          builder: (context) => Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                defaultTextFormField(
-                  validate: (value){},
-                  controller: nameController,
-                  type: TextInputType.text,
-                  labelText: 'Name',
-                  prefix: Icons.person,
+        return Scaffold(
+          appBar: AppBar(),
+          body: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  navigateTo(context, const NotificationsScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    //   color: SettingsCubit.get(context).isSelected
+                    //       ? Colors.grey[300]
+                    //       : Colors.white,
+                    // ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.notifications_none,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Text(
+                            "Notifications",
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(
-                  height: 20.0,
+              ),
+              const SizedBox(height: 10.0,),
+              GestureDetector(
+                onTap: () {
+                  navigateTo(context, ShopUpdateProfileScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    //   color: SettingsCubit.get(context).isSelected
+                    //       ? Colors.grey[300]
+                    //       : Colors.white,
+                    // ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.update,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Text(
+                            "Update Profile",
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                defaultTextFormField(
-                  validate: (value){},
-                  controller: emailController,
-                  type: TextInputType.emailAddress,
-                  labelText: 'Email Address',
-                  prefix: Icons.email,
+              ),
+              const SizedBox(height: 8.0,),
+              GestureDetector(
+                onTap: () {
+                  navigateTo(context, const FAQsScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    //   color: SettingsCubit.get(context).isSelected
+                    //       ? Colors.grey[300]
+                    //       : Colors.white,
+                    // ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.question_answer_outlined,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Text(
+                            "FAQs",
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(
-                  height: 20.0,
+              ),
+              const SizedBox(height: 8.0,),
+              GestureDetector(
+                onTap: () {
+                  navigateTo(context, ComplaintsScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    //   color: SettingsCubit.get(context).isSelected
+                    //       ? Colors.grey[300]
+                    //       : Colors.white,
+                    // ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.report_outlined,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Text(
+                            "Complaints",
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                defaultTextFormField(
-                  validate: (value){},
-                  controller: phoneController,
-                  type: TextInputType.phone,
-                  labelText: 'Phone Number',
-                  prefix: Icons.phone,
+              ),
+              const SizedBox(height: 8.0,),
+              GestureDetector(
+                onTap: () {
+                  navigateTo(context, const ContactUsScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    // decoration: BoxDecoration(
+                    //   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                    //   color: SettingsCubit.get(context).isSelected
+                    //       ? Colors.grey[300]
+                    //       : Colors.white,
+                    // ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.contact_support_outlined,
+                          ),
+                          SizedBox(width: 20.0,),
+                          Text(
+                            "Contact US",
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                defaultButton(
-                  function: (){
-                    // ShopCubit.get(context).updateUserData();
-                  },
-                  text: 'Update',
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                defaultButton(
-                  function: (){
-                    signOut(context);
-                  },
-                  text: 'Logout',
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          fallback: (context) => const Center(child: CircularProgressIndicator()),
         );
       },
     );

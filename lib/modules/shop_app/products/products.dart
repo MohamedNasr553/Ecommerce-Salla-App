@@ -6,6 +6,7 @@ import 'package:shop_app/layout/shop_app/cubit.dart';
 import 'package:shop_app/layout/shop_app/states.dart';
 import 'package:shop_app/models/shop_app/shop_categories_model.dart';
 import 'package:shop_app/models/shop_app/shop_layout_model.dart';
+import 'package:shop_app/shared/components/components.dart';
 
 class ShopProductScreen extends StatelessWidget {
   const ShopProductScreen({super.key});
@@ -217,6 +218,18 @@ class ShopProductScreen extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           ShopCubit.get(context).changeFavorites(model.id);
+                          if(ShopCubit.get(context).favorites[model.id] == true){
+                            showToast(
+                              text: "added to favorites",
+                              state: ToastStates.SUCCESS,
+                            );
+                          }
+                          else if(ShopCubit.get(context).favorites[model.id] == false){
+                            showToast(
+                              text: "Removed from favorites",
+                              state: ToastStates.SUCCESS,
+                            );
+                          }
                         },
                         icon: CircleAvatar(
                           radius: 15.0,
