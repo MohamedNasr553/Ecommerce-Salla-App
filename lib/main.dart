@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/ShopLayout.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
+import 'package:shop_app/modules/shop_app/FAQs/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/complaints/complaint.dart';
 import 'package:shop_app/modules/shop_app/complaints/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/login/LoginScreen.dart';
@@ -66,6 +67,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (BuildContext context) => SettingsCubit()..getContacts(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => FAQsCubit()..getFAQs(),
         ),
         BlocProvider(
           create: (BuildContext context) => ComplaintsCubit(),

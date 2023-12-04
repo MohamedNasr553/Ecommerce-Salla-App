@@ -15,3 +15,5 @@ const FAVORITES = 'favorites';
 const COMPLAINTS = 'complaints';
 
 const CONTACT_US = 'contacts';
+
+const FAQs = 'faqs';
