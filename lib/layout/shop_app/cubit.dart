@@ -21,7 +21,7 @@ class ShopCubit extends Cubit<ShopStates>{
     const ShopProductScreen(),
     const ShopCategoryScreen(),
     const ShopFavoriteScreen(),
-    ShopSettingScreen(),
+    const ShopSettingScreen(),
   ];
 
   int currentIndex = 0;
@@ -31,7 +31,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     emit(ShopChangeBottomNavBarState());
   }
-  
+
   ShopLayoutModel? shopLayoutModel;
   
   Map<int, bool> favorites = {};

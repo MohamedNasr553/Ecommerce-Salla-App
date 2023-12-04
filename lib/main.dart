@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => AppCubit()..changeTheme(fromShared: isDark,),
         ),
         BlocProvider(
-          create: (BuildContext context) => SettingsCubit(),
+          create: (BuildContext context) => SettingsCubit()..getContacts(),
         ),
         BlocProvider(
           create: (BuildContext context) => ComplaintsCubit(),

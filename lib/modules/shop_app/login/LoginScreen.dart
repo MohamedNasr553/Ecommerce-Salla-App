@@ -162,7 +162,7 @@ class ShopLoginScreen extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  navigateTo(context, RegisterScreen());
+                                  navigateToPage(context, RegisterScreen());
                                 },
                                 child: const Text(
                                   'Register Now',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -85,7 +86,7 @@ Widget separator()
       color: Colors.grey,
     );
 
-void navigateTo(context, widget)
+void navigateToPage(context, widget)
   =>
     Navigator.push(
       context,
@@ -93,6 +94,16 @@ void navigateTo(context, widget)
         builder: (context) => widget,
       ),
     );
+
+void navigateToURL({
+  required String url,
+}) async {
+  if (await canLaunch(url)) {
+    await launch(url, forceSafariVC: false, forceWebView: false);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
 void navigateAndFinish(context,widget)
   =>

@@ -13,3 +13,5 @@ const SEARCH = 'products/search';
 const FAVORITES = 'favorites';
 
 const COMPLAINTS = 'complaints';
+
+const CONTACT_US = 'contacts';

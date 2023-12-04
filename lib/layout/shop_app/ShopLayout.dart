@@ -5,7 +5,6 @@ import 'package:shop_app/layout/shop_app/states.dart';
 import 'package:shop_app/modules/shop_app/search/search.dart';
 import 'package:shop_app/shared/components/components.dart';
 
-
 class ShopLayout extends StatelessWidget {
   const ShopLayout({super.key});
 
@@ -27,7 +26,7 @@ class ShopLayout extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: (){
-                  navigateTo(context, ShopSearchScreen());
+                  navigateToPage(context, ShopSearchScreen());
                 },
                 icon: const Icon(
                   Icons.search,
