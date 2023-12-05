@@ -23,13 +23,11 @@ void main() async {
   await CacheHelper.init();
 
   Widget widget;
-
   bool isDark = CacheHelper.get(key: 'isDark') ?? false;
-
   bool onBoarding = CacheHelper.get(key: 'onBoarding') ?? false;
 
   userToken = await getUserToken();
-  print(userToken);
+  // print(userToken);
 
   if (onBoarding) {
     if (userToken != null) {
