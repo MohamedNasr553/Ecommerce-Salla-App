@@ -11,8 +11,8 @@ void signOut(context){
 }
 
 String? userToken = '';
-Future<String> getUserToken() async{
-  return CacheHelper.get(key: 'token')?? "OUivTRhAD27e7V4ulp3L8M6BimJo2UjUJ5MSVWYU450VMgVchMnKpdjl0yuIWai0j8Ix8z";
+Future<String?> getUserToken() async{
+  return CacheHelper.get(key: 'token');
 }
 
 void printFullText(String text) {

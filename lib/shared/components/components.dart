@@ -47,12 +47,39 @@ Widget defaultTextFormField({
   IconData? suffix,
   VoidCallback? suffixPressed,
   double radius = 0.0,
-  int? maxLines = 2,
+  int? maxLines = 1, // Set maxLines to 1 for password field
   int? minLines = 1,
-}) =>
-    TextFormField(
+}) {
+  if (isPassword) {
+    return TextField(
       controller: controller,
-      obscureText: isPassword,
+      obscureText: true,
+      keyboardType: type,
+      onSubmitted: (value) {
+        if (onFieldSubmitted != null) {
+          onFieldSubmitted(value);
+        }
+      },
+      onTap: onTap,
+      onChanged: onChange,
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(prefix),
+        suffix: (suffix != null)
+            ? IconButton(
+          icon: Icon(suffix),
+          onPressed: suffixPressed,
+        )
+            : null,
+        border: const OutlineInputBorder(),
+      ),
+      maxLines: 1,
+      minLines: 1,
+    );
+  } else {
+    return TextFormField(
+      controller: controller,
+      obscureText: false,
       keyboardType: type,
       onFieldSubmitted: onFieldSubmitted,
       onTap: onTap,
@@ -62,20 +89,18 @@ Widget defaultTextFormField({
       onChanged: onChange,
       decoration: InputDecoration(
         labelText: labelText,
-        prefixIcon: Icon(
-          prefix,
-        ),
+        prefixIcon: Icon(prefix),
         suffix: (suffix != null)
             ? IconButton(
-                icon: Icon(
-                  suffix,
-                ),
-                onPressed: suffixPressed,
-              )
+          icon: Icon(suffix),
+          onPressed: suffixPressed,
+        )
             : null,
         border: const OutlineInputBorder(),
       ),
     );
+  }
+}
 
 
 Widget separator()

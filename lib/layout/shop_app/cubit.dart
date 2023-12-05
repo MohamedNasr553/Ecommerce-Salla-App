@@ -33,7 +33,7 @@ class ShopCubit extends Cubit<ShopStates>{
   }
 
   ShopLayoutModel? shopLayoutModel;
-  
+
   Map<int, bool> favorites = {};
 
   void shopHomeData(){

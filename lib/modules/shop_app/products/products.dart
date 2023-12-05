@@ -224,12 +224,6 @@ class ShopProductScreen extends StatelessWidget {
                               state: ToastStates.SUCCESS,
                             );
                           }
-                          else if(ShopCubit.get(context).favorites[model.id] == false){
-                            showToast(
-                              text: "Removed from favorites",
-                              state: ToastStates.SUCCESS,
-                            );
-                          }
                         },
                         icon: CircleAvatar(
                           radius: 15.0,

@@ -26,7 +26,7 @@ class ShopLoginScreen extends StatelessWidget {
             if (state.loginModel.status! == true) {
               CacheHelper.saveData(
                 key: "token",
-                value: state.loginModel.data?.token,
+                value: state.loginModel.data!.token,
               ).then((value) {
                 navigateAndFinish(context, const ShopLayout());
               });
@@ -112,8 +112,8 @@ class ShopLoginScreen extends StatelessWidget {
                               onFieldSubmitted: (value) {
                                 if (formKey.currentState!.validate()) {
                                   ShopLoginCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passwordController.text
+                                    email: emailController.text,
+                                    password: passwordController.text,
                                   );
                                 }
                               },

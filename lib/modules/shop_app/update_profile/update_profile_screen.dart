@@ -8,6 +8,7 @@ class ShopUpdateProfileScreen extends StatelessWidget {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +30,34 @@ class ShopUpdateProfileScreen extends StatelessWidget {
             ),
             defaultTextFormField(
               validate: (value) {},
-              controller: emailController,
-              type: TextInputType.emailAddress,
-              labelText: 'Email Address',
-              prefix: Icons.email,
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            defaultTextFormField(
-              validate: (value) {},
               controller: phoneController,
               type: TextInputType.phone,
               labelText: 'Phone Number',
               prefix: Icons.phone,
             ),
             const SizedBox(
+              height: 20.0,
+            ),
+            defaultTextFormField(
+              validate: (value) {},
+              controller: emailController,
+              type: TextInputType.emailAddress,
+              labelText: 'Email Address',
+              prefix: Icons.email,
+            ),
+            const SizedBox(
               height: 40.0,
+            ),
+            defaultTextFormField(
+              controller: passwordController,
+              type: TextInputType.visiblePassword,
+              validate: (value) {},
+              labelText: 'Password',
+              prefix: Icons.lock,
+              suffixPressed: () {}
+            ),
+            const SizedBox(
+              height: 20.0,
             ),
             defaultButton(
               function: () {

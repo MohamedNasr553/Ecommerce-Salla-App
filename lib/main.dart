@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/ShopLayout.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
 import 'package:shop_app/modules/shop_app/FAQs/cubit/cubit.dart';
-import 'package:shop_app/modules/shop_app/complaints/complaint.dart';
 import 'package:shop_app/modules/shop_app/complaints/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/login/LoginScreen.dart';
 import 'package:shop_app/modules/shop_app/on_boarding/onboarding_screen.dart';
@@ -32,7 +31,7 @@ void main() async {
   userToken = await getUserToken();
   print(userToken);
 
-  if (onBoarding !=  null) {
+  if (onBoarding) {
     if (userToken != null) {
       widget = const ShopLayout();
     } else {
@@ -44,17 +43,20 @@ void main() async {
 
   return runApp(MyApp(
     isDark: isDark,
+    onBoarding: onBoarding,
     startWidget: widget,
   ));
 }
 
 class MyApp extends StatelessWidget {
   final bool isDark;
+  final bool onBoarding;
   final Widget startWidget;
 
   const MyApp({
     super.key,
     required this.isDark,
+    required this.onBoarding,
     required this.startWidget,
   });
 
@@ -91,7 +93,6 @@ class MyApp extends StatelessWidget {
             themeMode:
                 AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             home: startWidget,
-            // home: ComplaintsScreen(),
           );
         },
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/modules/shop_app/login/LoginScreen.dart';
 import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/cubit/cubit.dart';
+import 'package:shop_app/shared/network/local/CacheHelper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingModel {
@@ -29,6 +30,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void submit(){
+      CacheHelper.saveData(
+        key: 'onBoarding',
+        value: true,
+      ).then((value){
+        navigateAndFinish(context, ShopLoginScreen());
+      });
+    }
+
     List<OnBoardingModel> boardingList = [
       OnBoardingModel(
           image: 'assets/images/OnBoarding.jpg',
@@ -44,15 +54,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           body: 'Boarding body 3'),
     ];
 
-    // void submit(){
-    //   CacheHelper.saveData(
-    //       key: 'onBoarding',
-    //       value: true,
-    //   ).then((value){
-    //     navigateAndFinish(context, ShopLoginScreen());
-    //   });
-    // }
-
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -66,8 +67,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           TextButton(
             onPressed: (){
-              navigateAndFinish(context, ShopLoginScreen());
-              // submit();
+              // navigateAndFinish(context, ShopLoginScreen());
+              submit();
             },
             child: const Text(
               'Skip',
@@ -122,8 +123,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
-                      navigateAndFinish(context, ShopLoginScreen());
-                      // submit();
+                      // navigateAndFinish(context, ShopLoginScreen());
+                      submit();
                     }
                     else {
                       boardController.nextPage(
