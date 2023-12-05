@@ -145,13 +145,13 @@ void showToast({
 })
   =>
     Fluttertoast.showToast(
-        msg: text,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 4,
-        backgroundColor: chooseToastColor(state),
-        textColor: Colors.white,
-        fontSize: 16.0
+      msg: text,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 4,
+      backgroundColor: chooseToastColor(state),
+      textColor: Colors.white,
+      fontSize: 14.0
     );
 
 enum ToastStates{

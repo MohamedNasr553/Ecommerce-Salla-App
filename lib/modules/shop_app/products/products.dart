@@ -106,7 +106,7 @@ class ShopProductScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
-                childAspectRatio: 1 / 1.6,
+                childAspectRatio: 1 / 1.8,
                 children: List.generate(
                   model!.data!.products.length,
                   (index) => buildGridProduct(model.data!.products[index], context),
