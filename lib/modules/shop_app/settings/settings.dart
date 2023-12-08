@@ -21,6 +21,22 @@ class ShopSettingScreen extends StatelessWidget {
             appBar: AppBar(),
             body: Column(
               children: [
+                Center(
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      CircleAvatar(
+                        radius: 50.0,
+                        backgroundColor: Colors.deepOrange[300],
+                      ),
+                      CircleAvatar(
+                        radius: 12.0,
+                        backgroundColor: Colors.green[300],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 50.0,),
                 GestureDetector(
                   onTap: () {
                     navigateToPage(context, const NotificationsScreen());

@@ -14,69 +14,76 @@ class ShopUpdateProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            defaultTextFormField(
-              validate: (value) {},
-              controller: nameController,
-              type: TextInputType.text,
-              labelText: 'Name',
-              prefix: Icons.person,
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            defaultTextFormField(
-              validate: (value) {},
-              controller: phoneController,
-              type: TextInputType.phone,
-              labelText: 'Phone Number',
-              prefix: Icons.phone,
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            defaultTextFormField(
-              validate: (value) {},
-              controller: emailController,
-              type: TextInputType.emailAddress,
-              labelText: 'Email Address',
-              prefix: Icons.email,
-            ),
-            const SizedBox(
-              height: 40.0,
-            ),
-            defaultTextFormField(
-              controller: passwordController,
-              type: TextInputType.visiblePassword,
-              validate: (value) {},
-              labelText: 'Password',
-              prefix: Icons.lock,
-              suffixPressed: () {}
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            defaultButton(
-              function: () {
-                // ShopCubit.get(context).updateUserData();
-              },
-              text: 'Update',
-              color: Colors.deepOrange,
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            defaultButton(
-              function: () {
-                signOut(context);
-              },
-              text: 'Logout',
-              color: Colors.deepOrange,
-            ),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              defaultTextFormField(
+                validate: (value) {},
+                controller: nameController,
+                type: TextInputType.text,
+                labelText: 'Name',
+                prefix: Icons.person,
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              defaultTextFormField(
+                validate: (value) {},
+                controller: phoneController,
+                type: TextInputType.phone,
+                labelText: 'Phone Number',
+                prefix: Icons.phone,
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              defaultTextFormField(
+                validate: (value) {},
+                controller: emailController,
+                type: TextInputType.emailAddress,
+                labelText: 'Email Address',
+                prefix: Icons.email,
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              defaultTextFormField(
+                controller: passwordController,
+                type: TextInputType.visiblePassword,
+                validate: (value) {},
+                labelText: 'Password',
+                prefix: Icons.lock,
+                suffixPressed: () {}
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              defaultButton(
+                function: () {
+                  // ShopCubit.get(context).updateUserData();
+                },
+                text: 'Update',
+                color: Colors.deepOrange,
+                radius: 20.0,
+                height: 45.0,
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              defaultButton(
+                function: () {
+                  signOut(context);
+                },
+                radius: 20.0,
+                height: 45.0,
+                text: 'Logout',
+                color: Colors.deepOrange,
+              ),
+            ],
+          ),
         ),
       ),
     );

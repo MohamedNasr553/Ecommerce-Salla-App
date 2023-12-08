@@ -32,11 +32,11 @@ class ShopLoginScreen extends StatelessWidget {
               });
 
               showToast(
-                text: state.loginModel.message ?? "txt", // if message = null return "txt"
+                text: state.loginModel.message ?? "txt",
+                // if message = null return "txt"
                 state: ToastStates.SUCCESS,
               );
-            }
-            else{
+            } else {
               showToast(
                 text: state.loginModel.message ?? "txt",
                 state: ToastStates.ERROR,
@@ -44,7 +44,7 @@ class ShopLoginScreen extends StatelessWidget {
             }
           }
 
-          if(state is UserLoginErrorState){
+          if (state is UserLoginErrorState) {
             showToast(
               text: state.error,
               state: ToastStates.ERROR,
@@ -62,11 +62,11 @@ class ShopLoginScreen extends StatelessWidget {
                     child: Form(
                       key: formKey,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           // Welcome back Text
                           const Text(
-                            'Welcome back,',
+                            'Welcome back',
                             style: TextStyle(
                               fontSize: 35.0,
                               fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class ShopLoginScreen extends StatelessWidget {
                           ),
                           // Sign in to continue Text
                           Text(
-                            'Sign in to continue',
+                            'Sign in with your email and password',
                             style: TextStyle(
                               fontSize: 17.0,
                               color: Colors.black.withOpacity(0.5),
@@ -94,7 +94,7 @@ class ShopLoginScreen extends StatelessWidget {
                               return null;
                             },
                             labelText: 'Email Address',
-                            prefix: Icons.email,
+                            prefix: Icons.email_outlined,
                           ),
                           const SizedBox(
                             height: 25.0,
@@ -121,7 +121,7 @@ class ShopLoginScreen extends StatelessWidget {
                               isPassword:
                                   ShopLoginCubit.get(context).isPassword,
                               suffix: ShopLoginCubit.get(context).suffix,
-                              prefix: Icons.lock,
+                              prefix: Icons.lock_outline_rounded,
                               suffixPressed: () {
                                 ShopLoginCubit.get(context).changeVisibility();
                               }),
@@ -143,7 +143,8 @@ class ShopLoginScreen extends StatelessWidget {
                                   );
                                 }
                               },
-                              radius: 8.0,
+                              radius: 20.0,
+                              width: MediaQuery.of(context).size.width,
                             ),
                             fallback: (context) => const Center(
                                 child: CircularProgressIndicator()),
@@ -158,16 +159,18 @@ class ShopLoginScreen extends StatelessWidget {
                                 'Don\'t have an account?',
                                 style: TextStyle(
                                   fontSize: 17.0,
+                                  color: Colors.grey,
                                 ),
                               ),
                               TextButton(
                                 onPressed: () {
                                   navigateToPage(context, RegisterScreen());
                                 },
-                                child: const Text(
-                                  'Register Now',
+                                child: Text(
+                                  'Sign Up',
                                   style: TextStyle(
                                     fontSize: 17.0,
+                                    color: Colors.deepOrange.shade300,
                                   ),
                                 ),
                               ),

@@ -14,7 +14,7 @@ class ShopCategoryScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ListView.separated(
-          itemBuilder: (context, index) => buildCatItem(ShopCubit.get(context).categoriesModel!.data!.data[index]),
+          itemBuilder: (context, index) => buildCatItem(ShopCubit.get(context).categoriesModel!.data!.data[index], context),
           separatorBuilder: (context, index) => separator(),
           itemCount: ShopCubit.get(context).categoriesModel!.data!.data.length,
         );
@@ -22,7 +22,7 @@ class ShopCategoryScreen extends StatelessWidget {
     );
   }
 
-  Widget buildCatItem(DataModel model) => Padding(
+  Widget buildCatItem(DataModel model, context) => Padding(
     padding: const EdgeInsets.all(20.0),
     child: Row(
       children:
@@ -36,18 +36,23 @@ class ShopCategoryScreen extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         const SizedBox(
-          width: 20.0,
+          width: 15.0,
         ),
         Text(
           model.name!,
           style: const TextStyle(
-            fontSize: 20.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.bold,
           ),
         ),
         const Spacer(),
-        const Icon(
-          Icons.arrow_forward_ios,
+        IconButton(
+          onPressed: (){
+
+          },
+          icon: const Icon(
+            Icons.arrow_forward_ios,
+          ),
         ),
       ],
     ),

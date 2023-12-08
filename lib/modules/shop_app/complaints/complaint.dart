@@ -84,9 +84,9 @@ class ComplaintsScreen extends StatelessWidget {
                       ),
                       // Message TextField
                       defaultTextFormField(
-                        controller: messageController,
-                        maxLines: 7,
                         minLines: 4,
+                        maxLines: 4,
+                        controller: messageController,
                         type: TextInputType.text,
                         validate: (value) {
                           if (value!.isEmpty) {
@@ -121,7 +121,7 @@ class ComplaintsScreen extends StatelessWidget {
                               );
                             }
                           },
-                          radius: 4.0,
+                          radius: 20.0,
                         ),
                         fallback: (context) => const Center(
                             child: CircularProgressIndicator()),

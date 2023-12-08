@@ -28,7 +28,7 @@ Widget defaultButton({
           style: TextStyle(
             color: Colors.white,
             fontWeight: fontWeight,
-            fontSize: 25.0,
+            fontSize: 22.0,
           ),
         ),
       ),
@@ -46,65 +46,40 @@ Widget defaultTextFormField({
   required IconData prefix,
   IconData? suffix,
   VoidCallback? suffixPressed,
-  double radius = 0.0,
-  int? maxLines = 1, // Set maxLines to 1 for password field
+  int? maxLines = 1,
   int? minLines = 1,
-}) {
-  if (isPassword) {
-    return TextField(
+}) =>
+    TextFormField(
+      maxLines: maxLines,
+      minLines: minLines,
       controller: controller,
-      obscureText: true,
-      keyboardType: type,
-      onSubmitted: (value) {
-        if (onFieldSubmitted != null) {
-          onFieldSubmitted(value);
-        }
-      },
-      onTap: onTap,
-      onChanged: onChange,
-      decoration: InputDecoration(
-        labelText: labelText,
-        prefixIcon: Icon(prefix),
-        suffix: (suffix != null)
-            ? IconButton(
-          icon: Icon(suffix),
-          onPressed: suffixPressed,
-        )
-            : null,
-        border: const OutlineInputBorder(),
-      ),
-      maxLines: 1,
-      minLines: 1,
-    );
-  } else {
-    return TextFormField(
-      controller: controller,
-      obscureText: false,
+      obscureText: isPassword,
       keyboardType: type,
       onFieldSubmitted: onFieldSubmitted,
       onTap: onTap,
       validator: validate,
-      maxLines: maxLines,
-      minLines: minLines,
       onChanged: onChange,
       decoration: InputDecoration(
         labelText: labelText,
-        prefixIcon: Icon(prefix),
+        prefixIcon: Icon(
+          prefix,
+        ),
         suffix: (suffix != null)
             ? IconButton(
-          icon: Icon(suffix),
-          onPressed: suffixPressed,
-        )
+                icon: Icon(
+                  suffix,
+                ),
+                onPressed: suffixPressed,
+              )
             : null,
-        border: const OutlineInputBorder(),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        ),
       ),
     );
-  }
-}
-
 
 Widget separator()
-  =>
+=>
     Container(
       width: double.infinity,
       height: 1.0,
@@ -112,7 +87,7 @@ Widget separator()
     );
 
 void navigateToPage(context, widget)
-  =>
+=>
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -130,40 +105,30 @@ void navigateToURL({
   }
 }
 
-void navigateAndFinish(context,widget)
-  =>
+void navigateAndFinish(context, widget)
+=>
     Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(
-        builder: (context) =>widget
-    ), (route) => false,
-);
-
-void showToast({
-  required String text,
-  required ToastStates state
-})
-  =>
-    Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 4,
-      backgroundColor: chooseToastColor(state),
-      textColor: Colors.white,
-      fontSize: 14.0
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+      (route) => false,
     );
 
-enum ToastStates{
-  SUCCESS,
-  ERROR,
-  WARNING
-}
+void showToast({required String text, required ToastStates state})
+=>
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 4,
+        backgroundColor: chooseToastColor(state),
+        textColor: Colors.white,
+        fontSize: 14.0);
 
-Color chooseToastColor(ToastStates state){
+enum ToastStates { SUCCESS, ERROR, WARNING }
+
+Color chooseToastColor(ToastStates state) {
   Color color;
-  switch(state)
-  {
+  switch (state) {
     case ToastStates.SUCCESS:
       color = Colors.green;
       break;
