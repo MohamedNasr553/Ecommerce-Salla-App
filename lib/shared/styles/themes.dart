@@ -64,7 +64,7 @@ ThemeData lightTheme = ThemeData(
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.deepOrange,
       unselectedItemColor: Colors.grey,
-      elevation: 20.0,
+      // elevation: 20.0,
       backgroundColor: Colors.white,
     ),
     textTheme: const TextTheme(

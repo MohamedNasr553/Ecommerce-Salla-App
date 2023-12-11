@@ -5,6 +5,7 @@ import 'package:shop_app/models/shop_app/shop_categories_model.dart';
 import 'package:shop_app/models/shop_app/shop_favorites_model.dart';
 import 'package:shop_app/models/shop_app/shop_layout_model.dart';
 import 'package:shop_app/models/shop_app/shop_login_model.dart';
+import 'package:shop_app/modules/shop_app/cart/cartScreen.dart';
 import 'package:shop_app/modules/shop_app/category/category.dart';
 import 'package:shop_app/modules/shop_app/favorites/favorites.dart';
 import 'package:shop_app/modules/shop_app/products/products.dart';
@@ -21,6 +22,7 @@ class ShopCubit extends Cubit<ShopStates>{
     const ShopProductScreen(),
     const ShopCategoryScreen(),
     const ShopFavoriteScreen(),
+    const ShopCartScreen(),
     const ShopSettingScreen(),
   ];
 

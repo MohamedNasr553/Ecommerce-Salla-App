@@ -46,6 +46,8 @@ dependencies:
   fluttertoast: ^8.2.4
   carousel_slider: ^4.2.1
   url_launcher: ^6.0.0
+  bottom_navy_bar: ^6.0.0
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:

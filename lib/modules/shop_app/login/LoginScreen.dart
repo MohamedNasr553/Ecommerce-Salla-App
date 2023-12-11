@@ -85,6 +85,8 @@ class ShopLoginScreen extends StatelessWidget {
                           ),
                           // Email Address TextField
                           defaultTextFormField(
+                            maxLines: 1,
+                            minLines: 1,
                             controller: emailController,
                             type: TextInputType.emailAddress,
                             validate: (value) {
@@ -101,6 +103,8 @@ class ShopLoginScreen extends StatelessWidget {
                           ),
                           // Password TextField
                           defaultTextFormField(
+                              maxLines: 1,
+                              minLines: 1,
                               controller: passwordController,
                               type: TextInputType.visiblePassword,
                               validate: (value) {
