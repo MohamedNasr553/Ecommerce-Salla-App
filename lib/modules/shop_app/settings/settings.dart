@@ -24,21 +24,12 @@ class ShopSettingScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Center(
-                    child: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        CircleAvatar(
-                          radius: 40.0,
-                          backgroundColor: Colors.deepOrange[300],
-                        ),
-                        CircleAvatar(
-                          radius: 8.0,
-                          backgroundColor: Colors.green[300],
-                        ),
-                      ],
+                    child: CircleAvatar(
+                      radius: 50.0,
+                      backgroundColor: Colors.deepOrange[300],
                     ),
                   ),
-                  const SizedBox(height: 50.0,),
+                  const SizedBox(height: 30.0,),
                   GestureDetector(
                     onTap: () {
                       navigateToPage(context, const NotificationsScreen());
@@ -284,7 +275,7 @@ class ShopSettingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40.0,),
+                  const SizedBox(height: 30.0,),
                   defaultButton(
                     function: () {
                       signOut(context);
