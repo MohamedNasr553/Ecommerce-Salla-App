@@ -70,18 +70,6 @@ class ShopUpdateProfileScreen extends StatelessWidget {
                 radius: 20.0,
                 height: 45.0,
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              defaultButton(
-                function: () {
-                  signOut(context);
-                },
-                radius: 20.0,
-                height: 45.0,
-                text: 'Logout',
-                color: Colors.deepOrange,
-              ),
             ],
           ),
         ),

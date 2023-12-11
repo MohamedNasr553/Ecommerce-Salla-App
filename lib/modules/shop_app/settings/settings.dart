@@ -8,6 +8,7 @@ import 'package:shop_app/modules/shop_app/settings/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/settings/cubit/states.dart';
 import 'package:shop_app/modules/shop_app/update_profile/update_profile_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
+import 'package:shop_app/shared/components/constants.dart';
 
 class ShopSettingScreen extends StatelessWidget {
   const ShopSettingScreen({super.key});
@@ -282,6 +283,17 @@ class ShopSettingScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 40.0,),
+                  defaultButton(
+                    function: () {
+                      signOut(context);
+                    },
+                    radius: 20.0,
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: 45.0,
+                    text: 'Logout',
+                    color: Colors.deepOrange.shade400,
                   ),
                 ],
               ),
