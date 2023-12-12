@@ -27,7 +27,7 @@ void main() async {
   bool onBoarding = CacheHelper.get(key: 'onBoarding') ?? false;
 
   userToken = await getUserToken();
-  // print(userToken);
+  print(userToken);
 
   if (onBoarding) {
     if (userToken != null) {

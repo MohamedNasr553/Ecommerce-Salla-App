@@ -6,11 +6,13 @@ import 'package:shop_app/models/shop_app/shop_categories_model.dart';
 import 'package:shop_app/models/shop_app/shop_favorites_model.dart';
 import 'package:shop_app/models/shop_app/shop_layout_model.dart';
 import 'package:shop_app/models/shop_app/shop_login_model.dart';
+import 'package:shop_app/models/shop_app/update_profile_model.dart';
 import 'package:shop_app/modules/shop_app/cart/cartScreen.dart';
 import 'package:shop_app/modules/shop_app/category/category.dart';
 import 'package:shop_app/modules/shop_app/favorites/favorites.dart';
 import 'package:shop_app/modules/shop_app/products/products.dart';
 import 'package:shop_app/modules/shop_app/settings/settings.dart';
+import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/network/endpoints.dart';
 import 'package:shop_app/shared/network/remote/dio_helper.dart';
 
@@ -44,6 +46,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
    DioHelper.getData(
      url: HOME,
+     token: userToken,
    ).then((value){
      shopLayoutModel = ShopLayoutModel.fromJson(value.data);
 
@@ -65,6 +68,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.getData(
       url: PROFILE,
+      token: userToken,
     ).then((value){
       shopProfileModel = ShopLoginModel.fromJson(value.data);
 
@@ -74,12 +78,44 @@ class ShopCubit extends Cubit<ShopStates>{
     });
   }
 
+  UpdateProfileModel? updateProfileModel;
+
+  void updateProfile({
+    required String name,
+    required String phone,
+    required String email,
+    required String password,
+  }){
+    emit(ShopUpdateProfileLoadingState());
+
+    DioHelper.putData(
+      url: UPDATE_PROFILE,
+      token: userToken,
+      data:
+      {
+        'name': name,
+        'phone': phone,
+        'email' : email,
+        'password' : password,
+      },
+    ).then((value){
+      updateProfileModel = UpdateProfileModel.fromJson(value.data);
+
+      emit(ShopUpdateProfileSuccessState(updateProfileModel!));
+    }).catchError((error){
+      print(error.toString());
+
+      emit(ShopUpdateProfileErrorState(error.toString()));
+    });
+  }
+
   CategoriesModel? categoriesModel;
   void getCategories(){
     emit(ShopCategoriesLoadingState());
 
     DioHelper.getData(
       url: CATEGORIES,
+      token: userToken,
     ).then((value){
       categoriesModel = CategoriesModel.fromJson(value.data);
 
@@ -98,6 +134,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.postData(
       url: FAVORITES,
+      token: userToken,
       data: {
         'productId': productId,
       }
@@ -123,6 +160,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.getData(
       url: ELECTRONIC_CATEGORIES,
+      token: userToken,
     ).then((value){
       electronicCategoryModel = CategoryDetailsModel.fromJson(value.data);
 
@@ -139,6 +177,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.getData(
       url: PREVENT_CORONA_CATEGORIES,
+      token: userToken,
     ).then((value){
       preventCoronaCategory = CategoryDetailsModel.fromJson(value.data);
 
@@ -156,6 +195,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.getData(
       url: SPORTS_CATEGORIES,
+      token: userToken,
     ).then((value){
       sportsCategory = CategoryDetailsModel.fromJson(value.data);
 
@@ -173,6 +213,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.getData(
       url: LIGHTING_CATEGORIES,
+      token: userToken,
     ).then((value){
       lightingCategory = CategoryDetailsModel.fromJson(value.data);
 
@@ -190,6 +231,7 @@ class ShopCubit extends Cubit<ShopStates>{
 
     DioHelper.getData(
       url: CLOTHES_CATEGORIES,
+      token: userToken,
     ).then((value){
       clothesCategory = CategoryDetailsModel.fromJson(value.data);
 

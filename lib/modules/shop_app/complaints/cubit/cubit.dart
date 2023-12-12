@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/models/shop_app/shop_complaint_model.dart';
 import 'package:shop_app/modules/shop_app/complaints/cubit/states.dart';
+import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/network/endpoints.dart';
 import 'package:shop_app/shared/network/remote/dio_helper.dart';
 
@@ -21,6 +22,7 @@ class ComplaintsCubit extends Cubit<ComplaintsStates>{
 
     DioHelper.postData(
       url: COMPLAINTS,
+      token: userToken,
       data:
       {
         'name' : name,

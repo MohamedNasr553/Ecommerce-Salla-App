@@ -19,23 +19,27 @@ class ShopSettingScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(),
             body: SingleChildScrollView(
               child: Column(
                 children: [
+                  const SizedBox(height: 20.0,),
                   Center(
                     child: CircleAvatar(
                       radius: 50.0,
                       backgroundColor: Colors.deepOrange[300],
                     ),
                   ),
-                  const SizedBox(height: 30.0,),
+                  const SizedBox(height: 20.0,),
                   GestureDetector(
                     onTap: () {
                       navigateToPage(context, const NotificationsScreen());
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsetsDirectional.only(
+                        start: 10.0,
+                        end: 10.0,
+                        top: 10.0,
+                      ),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -72,7 +76,11 @@ class ShopSettingScreen extends StatelessWidget {
                       navigateToPage(context, ShopUpdateProfileScreen());
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsetsDirectional.only(
+                        start: 10.0,
+                        end: 10.0,
+                        top: 10.0,
+                      ),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -109,7 +117,11 @@ class ShopSettingScreen extends StatelessWidget {
                       navigateToPage(context, const FAQsScreen());
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsetsDirectional.only(
+                        start: 10.0,
+                        end: 10.0,
+                        top: 10.0,
+                      ),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -146,7 +158,11 @@ class ShopSettingScreen extends StatelessWidget {
                       navigateToPage(context, ComplaintsScreen());
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsetsDirectional.only(
+                        start: 10.0,
+                        end: 10.0,
+                        top: 10.0,
+                      ),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,
@@ -250,7 +266,11 @@ class ShopSettingScreen extends StatelessWidget {
                       );
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsetsDirectional.only(
+                        start: 10.0,
+                        end: 10.0,
+                        top: 10.0,
+                      ),
                       child: Container(
                         width: double.infinity,
                         height: 50.0,

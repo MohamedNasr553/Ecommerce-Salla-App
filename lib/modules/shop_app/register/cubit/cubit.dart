@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/models/shop_app/shop_register_model.dart';
 import 'package:shop_app/modules/shop_app/register/cubit/states.dart';
+import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/network/endpoints.dart';
 import 'package:shop_app/shared/network/remote/dio_helper.dart';
 
@@ -31,6 +32,7 @@ class ShopRegisterCubit extends Cubit<ShopRegisterStates>{
 
     DioHelper.postData(
         url: REGISTER,
+        token: userToken,
         data: {
           name : 'name',
           email : 'email',

@@ -1,3 +1,5 @@
+import 'package:shop_app/models/shop_app/update_profile_model.dart';
+
 abstract class ShopStates{}
 
 class ShopInitialState extends ShopStates{}
@@ -19,6 +21,22 @@ class ShopProfileLoadingState extends ShopStates{}
 class ShopProfileSuccessState extends ShopStates{}
 
 class ShopProfileErrorState extends ShopStates{}
+
+class ShopUpdateProfileInitialState extends ShopStates{}
+
+class ShopUpdateProfileLoadingState extends ShopStates{}
+
+class ShopUpdateProfileSuccessState extends ShopStates{
+  final UpdateProfileModel updateProfileModel;
+
+  ShopUpdateProfileSuccessState(this.updateProfileModel);
+}
+
+class ShopUpdateProfileErrorState extends ShopStates{
+  final String error;
+
+  ShopUpdateProfileErrorState(this.error);
+}
 
 class ShopCategoriesLoadingState extends ShopStates{}
 
