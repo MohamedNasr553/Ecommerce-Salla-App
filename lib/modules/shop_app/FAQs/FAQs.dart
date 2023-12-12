@@ -17,8 +17,8 @@ class FAQsScreen extends StatelessWidget {
           appBar: AppBar(),
           body: ListView.separated(
             itemBuilder: (context, int index) => buildFAQItem(FAQsCubit.get(context).faqModel!.data!.data[index]),
-            separatorBuilder: (context, int index) => separator(),
-            itemCount: 6,
+            separatorBuilder: (context, int index) => const SizedBox(height: 1.0,),
+            itemCount: FAQsCubit.get(context).faqModel!.data!.data.length,
           ),
         );
       },

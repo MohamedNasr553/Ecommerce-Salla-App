@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/states.dart';
+import 'package:shop_app/models/shop_app/category_details_model.dart';
 import 'package:shop_app/models/shop_app/shop_categories_model.dart';
 import 'package:shop_app/models/shop_app/shop_favorites_model.dart';
 import 'package:shop_app/models/shop_app/shop_layout_model.dart';
@@ -113,6 +114,90 @@ class ShopCubit extends Cubit<ShopStates>{
 
       favorites[productId] = !favorites[productId]!;
       emit(ShopFavoritesErrorState());
+    });
+  }
+
+  CategoryDetailsModel? electronicCategoryModel;
+  void getElectronicCategory(){
+    emit(ShopElectronicCategoriesLoadingState());
+
+    DioHelper.getData(
+      url: ELECTRONIC_CATEGORIES,
+    ).then((value){
+      electronicCategoryModel = CategoryDetailsModel.fromJson(value.data);
+
+      emit(ShopElectronicCategoriesSuccessState());
+    }).catchError((error){
+      print(error.toString());
+      emit(ShopElectronicCategoriesErrorState());
+    });
+  }
+
+  CategoryDetailsModel? preventCoronaCategory;
+  void getPreventCoronaCategories(){
+    emit(ShopPreventCoronaCategoriesLoadingState());
+
+    DioHelper.getData(
+      url: PREVENT_CORONA_CATEGORIES,
+    ).then((value){
+      preventCoronaCategory = CategoryDetailsModel.fromJson(value.data);
+
+      emit(ShopPreventCoronaCategoriesSuccessState());
+    }).catchError((onError){
+      print(onError.toString());
+
+      emit(ShopPreventCoronaCategoriesErrorState());
+    });
+  }
+
+  CategoryDetailsModel? sportsCategory;
+  void getSportsCategories(){
+    emit(ShopSportsCategoriesLoadingState());
+
+    DioHelper.getData(
+      url: SPORTS_CATEGORIES,
+    ).then((value){
+      sportsCategory = CategoryDetailsModel.fromJson(value.data);
+
+      emit(ShopSportsCategoriesSuccessState());
+    }).catchError((onError){
+      print(onError.toString());
+
+      emit(ShopSportsCategoriesErrorState());
+    });
+  }
+
+  CategoryDetailsModel? lightingCategory;
+  void getLightingCategories(){
+    emit(ShopLightingCategoriesLoadingState());
+
+    DioHelper.getData(
+      url: LIGHTING_CATEGORIES,
+    ).then((value){
+      lightingCategory = CategoryDetailsModel.fromJson(value.data);
+
+      emit(ShopLightingCategoriesSuccessState());
+    }).catchError((onError){
+      print(onError.toString());
+
+      emit(ShopLightingCategoriesErrorState());
+    });
+  }
+
+  CategoryDetailsModel? clothesCategory;
+  void getClothesCategories(){
+    emit(ShopClothesCategoriesLoadingState());
+
+    DioHelper.getData(
+      url: CLOTHES_CATEGORIES,
+    ).then((value){
+      clothesCategory = CategoryDetailsModel.fromJson(value.data);
+
+      emit(ShopClothesCategoriesSuccessState());
+    }).catchError((onError){
+      print(onError.toString());
+
+      emit(ShopClothesCategoriesErrorState());
     });
   }
 }

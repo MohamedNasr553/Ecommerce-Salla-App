@@ -63,7 +63,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (BuildContext context) => AppCubit()..changeTheme(fromShared: isDark,),
+          create: (BuildContext context) => AppCubit()
+            ..changeTheme(
+              fromShared: isDark,
+            ),
         ),
         BlocProvider(
           create: (BuildContext context) => SettingsCubit()..getContacts(),
@@ -78,7 +81,12 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => ShopCubit()
             ..shopHomeData()
             ..getCategories()
-            ..getUserProfile(),
+            ..getUserProfile()
+            ..getElectronicCategory()
+            ..getPreventCoronaCategories()
+            ..getSportsCategories()
+            ..getLightingCategories()
+            ..getClothesCategories(),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
@@ -88,8 +96,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
             darkTheme: darkTheme,
-            themeMode:
-                AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            // themeMode: AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            themeMode: ThemeMode.light,
             home: startWidget,
           );
         },

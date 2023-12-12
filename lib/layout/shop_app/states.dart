@@ -32,3 +32,32 @@ class ShopChangeFavoritesSuccessState extends ShopStates{}
 
 class ShopFavoritesErrorState extends ShopStates{}
 
+class ShopElectronicCategoriesLoadingState extends ShopStates{}
+
+class ShopElectronicCategoriesSuccessState extends ShopStates{}
+
+class ShopElectronicCategoriesErrorState extends ShopStates{}
+
+class ShopPreventCoronaCategoriesLoadingState extends ShopStates{}
+
+class ShopPreventCoronaCategoriesSuccessState extends ShopStates{}
+
+class ShopPreventCoronaCategoriesErrorState extends ShopStates{}
+
+class ShopSportsCategoriesLoadingState extends ShopStates{}
+
+class ShopSportsCategoriesSuccessState extends ShopStates{}
+
+class ShopSportsCategoriesErrorState extends ShopStates{}
+
+class ShopLightingCategoriesLoadingState extends ShopStates{}
+
+class ShopLightingCategoriesSuccessState extends ShopStates{}
+
+class ShopLightingCategoriesErrorState extends ShopStates{}
+
+class ShopClothesCategoriesLoadingState extends ShopStates{}
+
+class ShopClothesCategoriesSuccessState extends ShopStates{}
+
+class ShopClothesCategoriesErrorState extends ShopStates{}

@@ -20,7 +20,7 @@ class ShopProductScreen extends StatelessWidget {
           condition: ShopCubit.get(context).shopLayoutModel != null &&
               ShopCubit.get(context).categoriesModel != null,
           builder: (context) => productsBuilder(ShopCubit.get(context).shopLayoutModel, ShopCubit.get(context).categoriesModel, context),
-          fallback: (context) => const Center(child: CircularProgressIndicator()),
+          fallback: (context) => const Center(child: CircularProgressIndicator(color: Colors.deepOrange,)),
         );
       },
     );

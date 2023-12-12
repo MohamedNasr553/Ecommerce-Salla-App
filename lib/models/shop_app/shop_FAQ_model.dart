@@ -4,7 +4,7 @@ class FAQModel {
 
   FAQModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = FAQData.fromJson(json['data']);
+    json['data'] != null ? FAQData.fromJson(json['data']) : null;
   }
 }
 

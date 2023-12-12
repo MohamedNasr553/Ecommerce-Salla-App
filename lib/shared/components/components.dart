@@ -50,6 +50,7 @@ Widget defaultTextFormField({
   int? minLines = 1,
 }) =>
     TextFormField(
+      cursorColor: Colors.deepOrange,
       maxLines: maxLines,
       minLines: minLines,
       controller: controller,

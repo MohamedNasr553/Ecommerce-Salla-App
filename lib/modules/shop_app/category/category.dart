@@ -3,6 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
 import 'package:shop_app/layout/shop_app/states.dart';
 import 'package:shop_app/models/shop_app/shop_categories_model.dart';
+import 'package:shop_app/modules/shop_app/clothes_category/clothes.dart';
+import 'package:shop_app/modules/shop_app/electronic_category/electronic_category.dart';
+import 'package:shop_app/modules/shop_app/lighting_category/lighting.dart';
+import 'package:shop_app/modules/shop_app/preventCorona_category/preventCorona.dart';
+import 'package:shop_app/modules/shop_app/sports_category/sports.dart';
 import 'package:shop_app/shared/components/components.dart';
 
 class ShopCategoryScreen extends StatelessWidget {
@@ -48,10 +53,30 @@ class ShopCategoryScreen extends StatelessWidget {
         const Spacer(),
         IconButton(
           onPressed: (){
-
+            switch (model.name) {
+              case 'electrionic devices':
+                navigateToPage(context, const ElectronicCategory());
+                break;
+              case 'Prevent Corona':
+                navigateToPage(context, const PreventCoronaCategory());
+                break;
+              case 'sports':
+                navigateToPage(context, const SportsCategory());
+                break;
+              case 'Lighting':
+                navigateToPage(context, const LightingCategory());
+                break;
+              case 'Clothes':
+                navigateToPage(context, const ClothesCategory());
+                break;
+              default:
+                // Handle the default case if needed
+                break;
+            }
           },
           icon: const Icon(
-            Icons.arrow_forward_ios,
+            Icons.arrow_circle_right_outlined,
+            size: 30.0,
           ),
         ),
       ],

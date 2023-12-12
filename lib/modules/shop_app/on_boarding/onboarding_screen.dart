@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/modules/shop_app/login/LoginScreen.dart';
 import 'package:shop_app/shared/components/components.dart';
-import 'package:shop_app/shared/cubit/cubit.dart';
 import 'package:shop_app/shared/network/local/CacheHelper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -57,17 +56,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            onPressed: () {
-              AppCubit.get(context).changeTheme();
-            },
-            icon: const Icon(
-              Icons.brightness_4_outlined,
-            ),
-          ),
           TextButton(
             onPressed: (){
-              // navigateAndFinish(context, ShopLoginScreen());
               submit();
             },
             child: const Text(
@@ -123,7 +113,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
-                      // navigateAndFinish(context, ShopLoginScreen());
                       submit();
                     }
                     else {
