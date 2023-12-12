@@ -94,12 +94,9 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            // theme: lightTheme,
+            theme: lightTheme,
             // darkTheme: darkTheme,
             // themeMode: AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            theme: ThemeData(
-              primaryColor: Colors.deepOrange,
-            ),
             home: startWidget,
           );
         },
