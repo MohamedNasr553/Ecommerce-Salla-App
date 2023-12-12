@@ -48,11 +48,17 @@ Widget defaultTextFormField({
   VoidCallback? suffixPressed,
   int? maxLines = 1,
   int? minLines = 1,
+  Color textFieldColor = Colors.black,
 }) =>
     TextFormField(
       cursorColor: Colors.deepOrange,
       maxLines: maxLines,
       minLines: minLines,
+      style: TextStyle(
+        fontSize: 18.0,
+        color: textFieldColor.withOpacity(.6),
+        fontWeight: FontWeight.w500,
+      ), // Set text field color
       controller: controller,
       obscureText: isPassword,
       keyboardType: type,
@@ -75,6 +81,7 @@ Widget defaultTextFormField({
             : null,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          borderSide: BorderSide(color: Colors.deepOrange),
         ),
       ),
     );
