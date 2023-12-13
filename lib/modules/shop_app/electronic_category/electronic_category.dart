@@ -131,17 +131,19 @@ class ElectronicCategory extends StatelessWidget {
 
   Widget buildFavoriteButton(DetailedData electronicDetailedData, context) => IconButton(
     onPressed: () {
-      ShopCubit.get(context).changeFavorites(electronicDetailedData.id!);
-      if (ShopCubit.get(context).favorites[electronicDetailedData.id] == true) {
-        showToast(
-          text: "added to favorites",
-          state: ToastStates.SUCCESS,
-        );
-      }
+      int productId = electronicDetailedData.id!;
+      ShopCubit shopCubit = ShopCubit.get(context);
+      shopCubit.changeFavorites(productId);
+      showToast(
+        text: shopCubit.favorites[productId]!
+            ? "Added to favorites"
+            : "Removed from favorites",
+        state: ToastStates.SUCCESS,
+      );
     },
     icon: CircleAvatar(
-      radius: 18.0,
-      backgroundColor: ShopCubit.get(context).favorites[electronicDetailedData.id] ?? false
+      radius: 15.0,
+      backgroundColor: ShopCubit.get(context).favorites[electronicDetailedData.id]!
           ? Colors.deepOrange
           : Colors.grey,
       child: const Icon(

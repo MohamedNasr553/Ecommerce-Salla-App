@@ -19,7 +19,7 @@ class SportsCategory extends StatelessWidget {
           body: ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) => buildElectronicCategoryItem(sportsDetailedData[index], context),
+            itemBuilder: (context, index) => buildSportsCategoryItem(sportsDetailedData[index], context),
             separatorBuilder: (context, index) => separator(),
             itemCount: ShopCubit.get(context).sportsCategory!.data!.data.length,
           ),
@@ -28,7 +28,7 @@ class SportsCategory extends StatelessWidget {
     );
   }
 
-  Widget buildElectronicCategoryItem(DetailedData sportsDetailedData, context) =>
+  Widget buildSportsCategoryItem(DetailedData sportsDetailedData, context) =>
       Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -131,17 +131,19 @@ class SportsCategory extends StatelessWidget {
 
   Widget buildFavoriteButton(DetailedData sportsDetailedData, context) => IconButton(
     onPressed: () {
-      ShopCubit.get(context).changeFavorites(sportsDetailedData.id!);
-      if (ShopCubit.get(context).favorites[sportsDetailedData.id] == true) {
-        showToast(
-          text: "added to favorites",
-          state: ToastStates.SUCCESS,
-        );
-      }
+      int productId = sportsDetailedData.id!;
+      ShopCubit shopCubit = ShopCubit.get(context);
+      shopCubit.changeFavorites(productId);
+      showToast(
+        text: shopCubit.favorites[productId]!
+            ? "Added to favorites"
+            : "Removed from favorites",
+        state: ToastStates.SUCCESS,
+      );
     },
     icon: CircleAvatar(
-      radius: 18.0,
-      backgroundColor: ShopCubit.get(context).favorites[sportsDetailedData.id] ?? false
+      radius: 15.0,
+      backgroundColor: ShopCubit.get(context).favorites[sportsDetailedData.id]!
           ? Colors.deepOrange
           : Colors.grey,
       child: const Icon(

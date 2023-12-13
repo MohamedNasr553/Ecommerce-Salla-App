@@ -86,7 +86,8 @@ class MyApp extends StatelessWidget {
             ..getPreventCoronaCategories()
             ..getSportsCategories()
             ..getLightingCategories()
-            ..getClothesCategories(),
+            ..getClothesCategories()
+            ..getFavoriteItems(),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

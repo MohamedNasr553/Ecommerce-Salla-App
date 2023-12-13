@@ -44,11 +44,17 @@ class ShopCategoriesSuccessState extends ShopStates{}
 
 class ShopCategoriesErrorState extends ShopStates{}
 
-class ShopFavoritesSuccessState extends ShopStates{}
+class ShopAddDeleteFavoritesSuccessState extends ShopStates{}
 
 class ShopChangeFavoritesSuccessState extends ShopStates{}
 
-class ShopFavoritesErrorState extends ShopStates{}
+class ShopAddDeleteFavoritesErrorState extends ShopStates{}
+
+class ShopGetFavoritesLoadingState extends ShopStates{}
+
+class ShopGetFavoritesSuccessState extends ShopStates{}
+
+class ShopGetFavoritesErrorState extends ShopStates{}
 
 class ShopElectronicCategoriesLoadingState extends ShopStates{}
 

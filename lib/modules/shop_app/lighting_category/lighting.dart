@@ -19,7 +19,7 @@ class LightingCategory extends StatelessWidget {
           body: ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) => buildElectronicCategoryItem(lightingDetailedData[index], context),
+            itemBuilder: (context, index) => buildLightingCategoryItem(lightingDetailedData[index], context),
             separatorBuilder: (context, index) => separator(),
             itemCount: ShopCubit.get(context).lightingCategory!.data!.data.length,
           ),
@@ -28,7 +28,7 @@ class LightingCategory extends StatelessWidget {
     );
   }
 
-  Widget buildElectronicCategoryItem(DetailedData lightingDetailedData, context) =>
+  Widget buildLightingCategoryItem(DetailedData lightingDetailedData, context) =>
       Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -131,17 +131,19 @@ class LightingCategory extends StatelessWidget {
 
   Widget buildFavoriteButton(DetailedData lightingDetailedData, context) => IconButton(
     onPressed: () {
-      ShopCubit.get(context).changeFavorites(lightingDetailedData.id!);
-      if (ShopCubit.get(context).favorites[lightingDetailedData.id] == true) {
-        showToast(
-          text: "added to favorites",
-          state: ToastStates.SUCCESS,
-        );
-      }
+      int productId = lightingDetailedData.id!;
+      ShopCubit shopCubit = ShopCubit.get(context);
+      shopCubit.changeFavorites(productId);
+      showToast(
+        text: shopCubit.favorites[productId]!
+            ? "Added to favorites"
+            : "Removed from favorites",
+        state: ToastStates.SUCCESS,
+      );
     },
     icon: CircleAvatar(
-      radius: 18.0,
-      backgroundColor: ShopCubit.get(context).favorites[lightingDetailedData.id] ?? false
+      radius: 15.0,
+      backgroundColor: ShopCubit.get(context).favorites[lightingDetailedData.id]!
           ? Colors.deepOrange
           : Colors.grey,
       child: const Icon(

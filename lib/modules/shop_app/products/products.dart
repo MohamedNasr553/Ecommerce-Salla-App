@@ -106,7 +106,7 @@ class ShopProductScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
-                childAspectRatio: 1 / 1.66,
+                childAspectRatio: 1 / 1.79,
                 children: List.generate(
                   model!.data!.products.length,
                   (index) => buildGridProduct(model.data!.products[index], context),
@@ -220,17 +220,21 @@ class ShopProductScreen extends StatelessWidget {
                       const Spacer(),
                       IconButton(
                         onPressed: () {
-                          ShopCubit.get(context).changeFavorites(model.id);
-                          if(ShopCubit.get(context).favorites[model.id] == true){
-                            showToast(
-                              text: "added to favorites",
-                              state: ToastStates.SUCCESS,
-                            );
-                          }
+                          int productId = model.id;
+                          ShopCubit shopCubit = ShopCubit.get(context);
+                          shopCubit.changeFavorites(productId);
+                          showToast(
+                            text: shopCubit.favorites[productId]!
+                                ? "Added to favorites"
+                                : "Removed from favorites",
+                            state: ToastStates.SUCCESS,
+                          );
                         },
                         icon: CircleAvatar(
                           radius: 15.0,
-                          backgroundColor: ShopCubit.get(context).favorites[model.id] ?? false ? Colors.deepOrange : Colors.grey,
+                          backgroundColor: ShopCubit.get(context).favorites[model.id]!
+                              ? Colors.deepOrange
+                              : Colors.grey,
                           child: const Icon(
                             Icons.favorite_border,
                             size: 15.0,

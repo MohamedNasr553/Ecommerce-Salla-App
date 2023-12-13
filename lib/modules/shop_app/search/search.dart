@@ -47,7 +47,7 @@ class ShopSearchScreen extends StatelessWidget {
                       height: 15.0,
                     ),
                     if(state is ShopSearchLoadingState)
-                      const LinearProgressIndicator(),
+                      const LinearProgressIndicator(color: Colors.deepOrange,),
                     const SizedBox(
                       height: 15.0,
                     ),
@@ -73,7 +73,10 @@ class ShopSearchScreen extends StatelessWidget {
   }
 
   Widget buildSearchItem(DetailedSearchDataModel detailedSearchModel) => Padding(
-    padding: const EdgeInsets.all(10.0),
+    padding: const EdgeInsetsDirectional.only(
+      end: 10.0,
+      top: 10.0,
+    ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -84,25 +87,24 @@ class ShopSearchScreen extends StatelessWidget {
           width: 150.0,
           height: 150.0,
         ),
-        const SizedBox(
-          width: 20.0,
-        ),
+        const SizedBox(width: 5.0,),
         Expanded(
           child: Container(
-            height: 200.0,
+            height: 180.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  detailedSearchModel.name!,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 18.0,
+                SizedBox(
+                  height: 100.0,
+                  child: Text(
+                    detailedSearchModel.name!,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -110,11 +112,10 @@ class ShopSearchScreen extends StatelessWidget {
                     Text(
                       '${detailedSearchModel.price!.round()}',
                       style: const TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.deepOrange,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10.0,
                     ),
                     const Spacer(),
                     IconButton(

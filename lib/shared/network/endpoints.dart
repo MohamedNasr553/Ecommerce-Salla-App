@@ -22,7 +22,9 @@ const CLOTHES_CATEGORIES = 'categories/46';
 
 const SEARCH = 'products/search';
 
-const FAVORITES = 'favorites';
+const ADD_DELETE_FAVORITES = 'favorites';
+
+const GET_FAVORITES = 'favorites';
 
 const COMPLAINTS = 'complaints';
 

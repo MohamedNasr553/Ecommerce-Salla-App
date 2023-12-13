@@ -19,7 +19,7 @@ class ClothesCategory extends StatelessWidget {
           body: ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) => buildElectronicCategoryItem(clothesDetailedData[index], context),
+            itemBuilder: (context, index) => buildClothesCategoryItem(clothesDetailedData[index], context),
             separatorBuilder: (context, index) => separator(),
             itemCount: ShopCubit.get(context).clothesCategory!.data!.data.length,
           ),
@@ -28,7 +28,7 @@ class ClothesCategory extends StatelessWidget {
     );
   }
 
-  Widget buildElectronicCategoryItem(DetailedData clothesDetailedData, context) =>
+  Widget buildClothesCategoryItem(DetailedData clothesDetailedData, context) =>
       Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
@@ -131,17 +131,19 @@ class ClothesCategory extends StatelessWidget {
 
   Widget buildFavoriteButton(DetailedData clothesDetailedData, context) => IconButton(
     onPressed: () {
-      ShopCubit.get(context).changeFavorites(clothesDetailedData.id!);
-      if (ShopCubit.get(context).favorites[clothesDetailedData.id] == true) {
-        showToast(
-          text: "added to favorites",
-          state: ToastStates.SUCCESS,
-        );
-      }
+      int productId = clothesDetailedData.id!;
+      ShopCubit shopCubit = ShopCubit.get(context);
+      shopCubit.changeFavorites(productId);
+      showToast(
+        text: shopCubit.favorites[productId]!
+            ? "Added to favorites"
+            : "Removed from favorites",
+        state: ToastStates.SUCCESS,
+      );
     },
     icon: CircleAvatar(
-      radius: 18.0,
-      backgroundColor: ShopCubit.get(context).favorites[clothesDetailedData.id] ?? false
+      radius: 15.0,
+      backgroundColor: ShopCubit.get(context).favorites[clothesDetailedData.id]!
           ? Colors.deepOrange
           : Colors.grey,
       child: const Icon(
