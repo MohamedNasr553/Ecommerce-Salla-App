@@ -26,6 +26,10 @@ const ADD_DELETE_FAVORITES = 'favorites';
 
 const GET_FAVORITES = 'favorites';
 
+const ADD_DELETE_CART = 'carts';
+
+const GET_CART = 'carts';
+
 const COMPLAINTS = 'complaints';
 
 const CONTACT_US = 'contacts';

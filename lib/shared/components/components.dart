@@ -9,6 +9,7 @@ Widget defaultButton({
   double radius = 0.0,
   bool isUpperCase = true,
   FontWeight fontWeight = FontWeight.normal,
+  double fontSize = 22.0,
   required VoidCallback function,
   required String text,
 }) =>
@@ -28,7 +29,7 @@ Widget defaultButton({
           style: TextStyle(
             color: Colors.white,
             fontWeight: fontWeight,
-            fontSize: 22.0,
+            fontSize: fontSize,
           ),
         ),
       ),

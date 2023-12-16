@@ -106,7 +106,7 @@ class ShopProductScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
-                childAspectRatio: 1 / 1.79,
+                childAspectRatio: 1 / 1.95,
                 children: List.generate(
                   model!.data!.products.length,
                   (index) => buildGridProduct(model.data!.products[index], context),
@@ -145,7 +145,7 @@ class ShopProductScreen extends StatelessWidget {
         ],
       );
 
-  Widget buildGridProduct(ProductModel? model, context) => Container(
+  Widget buildGridProduct(ProductModel? productModel, context) => Container(
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -155,11 +155,11 @@ class ShopProductScreen extends StatelessWidget {
               alignment: AlignmentDirectional.bottomStart,
               children: [
                 Image(
-                  image: NetworkImage(model!.image),
+                  image: NetworkImage(productModel!.image),
                   width: double.infinity,
                   height: 200.0,
                 ),
-                if (model.discount != 0)
+                if (productModel.discount != 0)
                   Container(
                     color: Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -181,12 +181,12 @@ class ShopProductScreen extends StatelessWidget {
                   Container(
                     height: 50.0,
                     child: Text(
-                      model.name,
+                      productModel.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 14.0,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                         height: 1.3,
                       ),
                     ),
@@ -194,20 +194,22 @@ class ShopProductScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${model.price.round()}',
+                        '${productModel.price.round()}',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            fontSize: 12.0,
-                            height: 1.3,
-                            color: Colors.deepOrange),
+                          fontSize: 14.0,
+                          height: 1.3,
+                          color: Colors.deepOrange,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       const SizedBox(
                         width: 5.0,
                       ),
-                      if (model.discount != 0)
+                      if (productModel.discount != 0)
                         Text(
-                          '${model.oldPrice.round()}',
+                          '${productModel.oldPrice.round()}',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -220,11 +222,10 @@ class ShopProductScreen extends StatelessWidget {
                       const Spacer(),
                       IconButton(
                         onPressed: () {
-                          int productId = model.id;
-                          ShopCubit shopCubit = ShopCubit.get(context);
-                          shopCubit.changeFavorites(productId);
+                          int productId = productModel.id;
+                          ShopCubit.get(context).changeFavorites(productId);
                           showToast(
-                            text: shopCubit.favorites[productId]!
+                            text: ShopCubit.get(context).favorites[productId]!
                                 ? "Added to favorites"
                                 : "Removed from favorites",
                             state: ToastStates.SUCCESS,
@@ -232,7 +233,7 @@ class ShopProductScreen extends StatelessWidget {
                         },
                         icon: CircleAvatar(
                           radius: 15.0,
-                          backgroundColor: ShopCubit.get(context).favorites[model.id]!
+                          backgroundColor: ShopCubit.get(context).favorites[productModel.id]!
                               ? Colors.deepOrange
                               : Colors.grey,
                           child: const Icon(
@@ -243,6 +244,30 @@ class ShopProductScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 10.0,),
+                  Center(
+                    child: defaultButton(
+                      width: 150.0,
+                      height: 30.0,
+                      function: () {
+                        int productId = productModel.id;
+                        ShopCubit.get(context).changeCart(productId);
+                        showToast(
+                          text: (ShopCubit.get(context).cart[productId]!) ?
+                          "Added to Cart" :
+                          "Removed from the Cart",
+                          state: ToastStates.SUCCESS,
+                        );
+                      },
+                      text: (ShopCubit.get(context).cart[productModel.id]!) ?
+                        "Remove from Cart" :
+                        "Add to Cart",
+                      isUpperCase: true,
+                      color: Colors.deepOrange.shade400,
+                      radius: 12.0,
+                      fontSize: 12.0,
+                    ),
                   ),
                 ],
               ),

@@ -56,6 +56,22 @@ class ShopGetFavoritesSuccessState extends ShopStates{}
 
 class ShopGetFavoritesErrorState extends ShopStates{}
 
+class ShopAddDeleteCartSuccessState extends ShopStates{}
+
+class ShopChangeCartSuccessState extends ShopStates{}
+
+class ShopAddDeleteCartErrorState extends ShopStates{}
+
+class ShopGetCartLoadingState extends ShopStates{}
+
+class ShopGetCartSuccessState extends ShopStates{}
+
+class ShopGetCartErrorState extends ShopStates{}
+
+class ShopIncreaseQuantityState extends ShopStates{}
+
+class ShopDecreaseQuantityState extends ShopStates{}
+
 class ShopElectronicCategoriesLoadingState extends ShopStates{}
 
 class ShopElectronicCategoriesSuccessState extends ShopStates{}

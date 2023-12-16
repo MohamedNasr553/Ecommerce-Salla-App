@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layout/shop_app/states.dart';
 import 'package:shop_app/models/shop_app/category_details_model.dart';
+import 'package:shop_app/models/shop_app/shop_add_delete_cart_model.dart';
 import 'package:shop_app/models/shop_app/shop_categories_model.dart';
 import 'package:shop_app/models/shop_app/shop_add_delete_favorite_model.dart';
+import 'package:shop_app/models/shop_app/shop_get_cart_model.dart';
 import 'package:shop_app/models/shop_app/shop_get_favorites_model.dart';
 import 'package:shop_app/models/shop_app/shop_layout_model.dart';
 import 'package:shop_app/models/shop_app/shop_login_model.dart';
@@ -40,6 +42,7 @@ class ShopCubit extends Cubit<ShopStates> {
 
   /// ---------------- All Products -------------------
   Map<int, bool> favorites = {};
+  Map<int, bool> cart = {};
 
   ShopLayoutModel? shopLayoutModel;
 
@@ -51,10 +54,17 @@ class ShopCubit extends Cubit<ShopStates> {
       token: userToken,
     ).then((value) {
       shopLayoutModel = ShopLayoutModel.fromJson(value.data);
-
+      // InFavorites
       for (var element in shopLayoutModel!.data!.products) {
         favorites.addAll({
           element.id: element.inFavorites,
+        });
+      }
+
+      // InCart
+      for (var element in shopLayoutModel!.data!.products) {
+        cart.addAll({
+          element.id: element.inCart,
         });
       }
 
@@ -274,5 +284,70 @@ class ShopCubit extends Cubit<ShopStates> {
 
       emit(ShopGetFavoritesErrorState());
     });
+  }
+
+  /// ---------------- Cart -------------------
+  AddDeleteCartModel? addDeleteCart;
+
+  void changeCart(int productId) {
+    if (!cart.containsKey(productId)) {
+      cart[productId] = false;
+    }
+
+    cart[productId] = !cart[productId]!;
+    emit(ShopChangeCartSuccessState());
+
+    DioHelper.postData(
+      url: ADD_DELETE_CART,
+      token: userToken,
+      data: {
+        'product_id': productId
+      },
+    ).then((value) {
+      addDeleteCart = AddDeleteCartModel.fromJson(value.data);
+      getCartItems();
+
+      if (addDeleteCart!.status!) {
+        emit(ShopAddDeleteCartSuccessState());
+      }
+    }).catchError((error) {
+      print(error.toString());
+
+      cart[productId] = !cart[productId]!;
+      emit(ShopAddDeleteCartErrorState());
+    });
+  }
+
+  GetCartModel? getCartModel;
+
+  void getCartItems() {
+    emit(ShopGetCartLoadingState());
+
+    DioHelper.getData(
+      url: GET_CART,
+      token: userToken,
+    ).then((value) {
+      getCartModel = GetCartModel.fromJson(value.data);
+
+      emit(ShopGetCartSuccessState());
+    }).catchError((onError) {
+      print(onError.toString());
+
+      emit(ShopGetCartErrorState());
+    });
+  }
+
+  int quantity = 1;
+
+  void increaseQuantity(){
+    quantity++;
+
+    emit(ShopIncreaseQuantityState());
+  }
+
+  void decreaseQuantity(){
+    quantity--;
+
+    emit(ShopDecreaseQuantityState());
   }
 }

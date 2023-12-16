@@ -65,8 +65,8 @@ class ShopFavoriteScreen extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
@@ -76,8 +76,8 @@ class ShopFavoriteScreen extends StatelessWidget {
                     Text(
                       '${productDetailedData.product!.price}',
                       style: const TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w400,
                         color: Colors.deepOrange,
                       ),
                     ),
@@ -90,7 +90,7 @@ class ShopFavoriteScreen extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                          fontSize: 12.0,
+                          fontSize: 10.0,
                           height: 1.3,
                           color: Colors.grey,
                           decoration: TextDecoration.lineThrough,
