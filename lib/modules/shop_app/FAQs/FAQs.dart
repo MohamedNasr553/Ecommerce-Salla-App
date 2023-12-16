@@ -1,9 +1,9 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/models/shop_app/shop_FAQ_model.dart';
 import 'package:shop_app/modules/shop_app/FAQs/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/FAQs/cubit/states.dart';
-import 'package:shop_app/shared/components/components.dart';
 
 class FAQsScreen extends StatelessWidget {
   const FAQsScreen({super.key});
@@ -15,15 +15,21 @@ class FAQsScreen extends StatelessWidget {
       builder: (context, state){
         return Scaffold(
           appBar: AppBar(),
-          body: ListView.separated(
-            itemBuilder: (context, int index) => buildFAQItem(FAQsCubit.get(context).faqModel!.data!.data[index]),
-            separatorBuilder: (context, int index) => const SizedBox(height: 1.0,),
-            itemCount: FAQsCubit.get(context).faqModel!.data!.data.length,
-          ),
         );
+        // return ConditionalBuilder(
+        //   condition: FAQsCubit.get(context).faqModel != null,
+        //   builder: (context) => buildFAQScreen(FAQsCubit.get(context).faqModel, context),
+        //   fallback: (context) => const Center(child: CircularProgressIndicator(color: Colors.deepOrange)),
+        // );
       },
     );
   }
+
+  Widget buildFAQScreen(FAQModel? faqModel, context) => ListView.separated(
+        itemBuilder: (context, int index) => buildFAQItem(faqModel.data!.data[index]),
+        separatorBuilder: (context, int index) => const SizedBox(height: 1.0,),
+        itemCount: faqModel!.data!.data.length,
+      );
 
   Widget buildFAQItem(DetailedFAQData detailedFAQData) => Padding(
     padding: const EdgeInsets.all(20.0),
