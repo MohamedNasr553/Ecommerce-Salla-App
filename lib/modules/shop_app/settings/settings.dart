@@ -4,6 +4,7 @@ import 'package:shop_app/models/shop_app/shop_contactUs_model.dart';
 import 'package:shop_app/modules/shop_app/FAQs/FAQs.dart';
 import 'package:shop_app/modules/shop_app/complaints/complaint.dart';
 import 'package:shop_app/modules/shop_app/notifications/notifications.dart';
+import 'package:shop_app/modules/shop_app/settings/NavBar.dart';
 import 'package:shop_app/modules/shop_app/settings/cubit/cubit.dart';
 import 'package:shop_app/modules/shop_app/settings/cubit/states.dart';
 import 'package:shop_app/modules/shop_app/update_profile/update_profile_screen.dart';
@@ -19,14 +20,36 @@ class ShopSettingScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
+            appBar: AppBar(
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    icon: const Icon(
+                      Icons.menu,
+                    ),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  );
+                },
+              ),
+            ),
+            drawer: const NavBar(),
             body: SingleChildScrollView(
               child: Column(
                 children: [
                   const SizedBox(height: 20.0,),
                   Center(
                     child: CircleAvatar(
-                      radius: 50.0,
-                      backgroundColor: Colors.deepOrange[300],
+                      radius: 45.0,
+                      child: ClipOval(
+                        child: Image.network(
+                          'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
+                          fit: BoxFit.cover,
+                          width: 150.0,
+                          height: 150.0,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20.0,),
