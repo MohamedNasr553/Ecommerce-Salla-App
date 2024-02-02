@@ -18,6 +18,8 @@ Is a software platform that allows users to browse, select, Add items to cart, f
 
 => Bottom Navigation Bar (added)
 
+=> Side menu Bar (added)
+
 => Categories
 
 => Search Screen
