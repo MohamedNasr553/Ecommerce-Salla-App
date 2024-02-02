@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/layout/shop_app/NavBar.dart';
 import 'package:shop_app/layout/shop_app/cubit.dart';
 import 'package:shop_app/layout/shop_app/states.dart';
 import 'package:shop_app/modules/shop_app/search/search.dart';
@@ -18,6 +19,18 @@ class ShopLayout extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(
+                    Icons.menu,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                );
+              },
+            ),
             title: const Text(
               'Salla',
               style: TextStyle(
@@ -35,6 +48,7 @@ class ShopLayout extends StatelessWidget {
               ),
             ],
           ),
+          drawer: const NavBar(),
           body: shopCubit.shopScreens[shopCubit.currentIndex],
           bottomNavigationBar: Container(
             height: 65.0,
